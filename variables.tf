@@ -2,7 +2,9 @@
 variable "lc-name-prefix" {}
 variable "ami-id" {}
 variable "instance-type" {}
-variable "security-groups" {}
+variable "security-groups" {
+  type = "list"
+}
 variable "iam-instance-profile" {}
 variable "key-name" {}
 variable "user-data" {}
