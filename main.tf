@@ -66,7 +66,7 @@ resource "aws_cloudformation_stack" "asg" {
       }
     }
   },
-  "Output": {
+  "Outputs": {
     "AsgName": {
       "Description": "The name of your auto scaling group",
       "Value": { "Ref": "EcsAsg" }
