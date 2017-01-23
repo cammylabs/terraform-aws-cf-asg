@@ -1,7 +1,3 @@
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_region" {}
-
 /* launch config variables */
 variable "lc-name-prefix" {}
 variable "ami-id" {}
