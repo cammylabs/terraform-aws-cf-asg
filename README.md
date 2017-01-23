@@ -6,9 +6,6 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 
 ## Input Variables
 
-* `aws_access_key`
-* `aws_secret_key`
-* `aws_region`
 * `lc-name-prefix` - Creates a unique name beginning with the specified prefix.
 * `iam-id`
 * `instance-type`
@@ -24,6 +21,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 * `asg-desired-instance-count` - Desired number of running EC2 boxes in our ASG.
 * `min-instances-in-service` - Minimum required EC2 boxes to be running during a rolling update.
 * `max-update-batch-size`- Maximum number of boxes to update at a single time during a rolling update.
+* `environment` (optional) - An environment tag (default: Unknown)
 
 ## Output Variables
 
