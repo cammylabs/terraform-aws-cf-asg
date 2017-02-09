@@ -7,7 +7,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 ## Input Variables
 
 * `lc-name-prefix` - Creates a unique name beginning with the specified prefix.
-* `iam-id`
+* `ami-id`
 * `instance-type`
 * `security-groups` - An array of security (sg) ids.
 * `iam-instance-profile` - The ARN of the Instance Profile the LC should launch instances with.
