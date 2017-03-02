@@ -33,7 +33,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 
 ```hcl
 module "asg" {
-    source = "github.com/imageintelligence/tf_aws_cf_asg"
-    ...
+  source = "github.com/ImageIntelligence/tf_aws_cf_asg"
+  ...
 }
 ```
