@@ -11,7 +11,6 @@ variable "user-data" {}
 
 /* associate a public ip address with an instance in a vpc */
 variable "associate-public-ip-address" {
-  type    = "boolean"
   default = true
 }
 
