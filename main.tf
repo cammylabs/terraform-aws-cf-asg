@@ -1,14 +1,16 @@
 resource "aws_launch_configuration" "lc" {
-  name_prefix          = "${var.lc-name-prefix}"
-  image_id             = "${var.ami-id}"
-  instance_type        = "${var.instance-type}"
-  security_groups      = ["${var.security-groups}"]
-  iam_instance_profile = "${var.iam-instance-profile}"
-  key_name             = "${var.key-name}"
-  user_data            = "${var.user-data}"
+  name_prefix                 = "${var.lc-name-prefix}"
+  image_id                    = "${var.ami-id}"
+  instance_type               = "${var.instance-type}"
+  security_groups             = ["${var.security-groups}"]
+  iam_instance_profile        = "${var.iam-instance-profile}"
+  key_name                    = "${var.key-name}"
+  user_data                   = "${var.user-data}"
+
+  associate_public_ip_address = "${var.associate-public-ip-address}"
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy     = true
   }
 }
 

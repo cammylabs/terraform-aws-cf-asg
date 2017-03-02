@@ -22,6 +22,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 * `min-instances-in-service` - Minimum required EC2 boxes to be running during a rolling update.
 * `max-update-batch-size`- Maximum number of boxes to update at a single time during a rolling update.
 * `environment` (optional) - An environment tag (default: Unknown)
+* `associate-public-ip-address` (optional) - Associate a public ip address with an instance in a VPC.
 
 ## Output Variables
 

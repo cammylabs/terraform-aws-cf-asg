@@ -9,6 +9,12 @@ variable "iam-instance-profile" {}
 variable "key-name" {}
 variable "user-data" {}
 
+/* associate a public ip address with an instance in a vpc */
+variable "associate-public-ip-address" {
+  type    = "boolean"
+  default = true
+}
+
 /* asg config variables */
 variable "asg-name" {}
 variable "vpc-subnets" {}
