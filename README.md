@@ -15,7 +15,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 * `user-data` - A string passed to the `user_data` field on EC2 boot.
 * `asg-name`
 * `vpc-subnets`
-* `health-check-grace-period` - Number of seconds for the health check time out.
+* `health-check-grace-period` - Number of seconds to wait before checking the health status of instance.
 * `asg-min-instance-size` - Minimum number of EC2 boxes in our ASG.
 * `asg-max-instance-size` - Maximum number of EC2 boxes in our ASG.
 * `asg-desired-instance-count` - Desired number of running EC2 boxes in our ASG.
