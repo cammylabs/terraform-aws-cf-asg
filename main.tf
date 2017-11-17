@@ -1,27 +1,29 @@
 resource "aws_launch_configuration" "lc" {
-  name_prefix                 = "${var.lc-name-prefix}"
-  image_id                    = "${var.ami-id}"
-  instance_type               = "${var.instance-type}"
-  security_groups             = ["${var.security-groups}"]
-  iam_instance_profile        = "${var.iam-instance-profile}"
-  key_name                    = "${var.key-name}"
-  user_data                   = "${var.user-data}"
+  name_prefix          = "${var.lc-name-prefix}"
+  image_id             = "${var.ami-id}"
+  instance_type        = "${var.instance-type}"
+  security_groups      = ["${var.security-groups}"]
+  iam_instance_profile = "${var.iam-instance-profile}"
+  key_name             = "${var.key-name}"
+  user_data            = "${var.user-data}"
 
   associate_public_ip_address = "${var.associate-public-ip-address}"
 
   lifecycle {
-    create_before_destroy     = true
+    create_before_destroy = true
   }
 }
 
 // @see: https://github.com/hashicorp/terraform/issues/1552
 resource "aws_cloudformation_stack" "asg" {
   name = "${var.asg-name}"
+
   parameters {
     LaunchConfigurationName = "${aws_launch_configuration.lc.name}"
     VPCZoneIdentifier       = "${var.vpc-subnets}"
     HealthCheckGracePeriod  = "${var.health-check-grace-period}"
   }
+
   template_body = <<EOF
 {
   "Parameters": {
@@ -63,7 +65,7 @@ resource "aws_cloudformation_stack" "asg" {
         "AutoScalingRollingUpdate": {
           "MinInstancesInService": "${var.min-instances-in-service}",
           "MaxBatchSize":          "${var.max-update-batch-size}",
-          "PauseTime":             "PT0S"
+          "PauseTime":             "${var.pause-time}"
         }
       }
     }

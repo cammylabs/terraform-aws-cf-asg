@@ -19,6 +19,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 * `asg-min-instance-size` - Minimum number of EC2 boxes in our ASG.
 * `asg-max-instance-size` - Maximum number of EC2 boxes in our ASG.
 * `asg-desired-instance-count` - Desired number of running EC2 boxes in our ASG.
+* `pause-time` - The amount of time to pause after making a change to a batch of instances (default: PT0S).
 * `min-instances-in-service` - Minimum required EC2 boxes to be running during a rolling update.
 * `max-update-batch-size`- Maximum number of boxes to update at a single time during a rolling update.
 * `environment` (optional) - An environment tag (default: Unknown)
