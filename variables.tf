@@ -43,7 +43,7 @@ variable "max-update-batch-size" {
 }
 
 variable "timeout-in-minutes" {
-  default = "30 minutes"
+  default = 30
   description = "The amount of time that can pass before the CF stack status becomes CREATE_FAILED"
 }
 variable "pause-time" {
