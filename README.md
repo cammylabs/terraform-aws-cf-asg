@@ -1,36 +1,10 @@
 # tf_aws_cf_asg
 
-A Terraform module for creating an Auto-Scaling Group using CloudFormation templates. This is necessary as Terraform doesn't give you rolling updates for free.
+A Terraform module for creating an Auto-Scaling Group using CloudFormation templates. Unfortunately Terraform does not provide an rolling update solution. One solution could be to create an entirely new ASG, update DNS records and destroy the old version. However, this can be cumbersome when this has to happen often. A rolling update replaces instances in the same ASG in pre-defined batches and does not require multiple deployments to update DNS and destory old
 
 This module follows fairly closely with [tf_aws_asg](https://github.com/terraform-community-modules/tf_aws_asg) with the exception of manging everything via CloudFormation.
 
-## Input Variables
-
-* `lc-name-prefix` - Creates a unique name beginning with the specified prefix.
-* `ami-id`
-* `instance-type`
-* `security-groups` - An array of security (sg) ids.
-* `iam-instance-profile` - The ARN of the Instance Profile the LC should launch instances with.
-* `key-name` - The name of a keypair.
-* `user-data` - A string passed to the `user_data` field on EC2 boot.
-* `asg-name`
-* `vpc-subnets`
-* `health-check-grace-period` - Number of seconds to wait before checking the health status of instance.
-* `asg-min-instance-size` - Minimum number of EC2 boxes in our ASG.
-* `asg-max-instance-size` - Maximum number of EC2 boxes in our ASG.
-* `asg-desired-instance-count` - Desired number of running EC2 boxes in our ASG.
-* `pause-time` - The amount of time to pause after making a change to a batch of instances (default: PT0S).
-* `min-instances-in-service` - Minimum required EC2 boxes to be running during a rolling update.
-* `max-update-batch-size`- Maximum number of boxes to update at a single time during a rolling update.
-* `environment` (optional) - An environment tag (default: Unknown)
-* `associate-public-ip-address` (optional) - Associate a public ip address with an instance in a VPC.
-
-## Output Variables
-
-* `asg-name`
-* `launch-config-id`
-
-## Usage
+## Installlation and usage
 
 ```hcl
 module "asg" {
@@ -38,3 +12,7 @@ module "asg" {
   ...
 }
 ```
+
+## Variables
+
+For input variables and their descriptions, please see the [variables.tf](./variables.tf) file. For output variables, see the [output.tf](./output.tf) file.

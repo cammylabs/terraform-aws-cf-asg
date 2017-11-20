@@ -18,6 +18,8 @@ resource "aws_launch_configuration" "lc" {
 resource "aws_cloudformation_stack" "asg" {
   name = "${var.asg-name}"
 
+  timeout_in_minutes = "${var.timeout-in-minutes}"
+
   parameters {
     LaunchConfigurationName = "${aws_launch_configuration.lc.name}"
     VPCZoneIdentifier       = "${var.vpc-subnets}"
