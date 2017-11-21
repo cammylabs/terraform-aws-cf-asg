@@ -6,12 +6,7 @@ This module follows fairly closely with [tf_aws_asg](https://github.com/terrafor
 
 ## Installation and usage
 
-```hcl
-module "asg" {
-  source = "github.com/ImageIntelligence/terraform-aws-cf-asg"
-  ...
-}
-```
+https://registry.terraform.io/modules/ImageIntelligence/cf-asg/aws
 
 ## Variables
 
