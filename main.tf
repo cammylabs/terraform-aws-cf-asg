@@ -1,13 +1,13 @@
 resource "aws_launch_configuration" "lc" {
-  name_prefix          = "${var.lc-name-prefix}"
-  image_id             = "${var.ami-id}"
-  instance_type        = "${var.instance-type}"
-  security_groups      = ["${var.security-groups}"]
-  iam_instance_profile = "${var.iam-instance-profile}"
-  key_name             = "${var.key-name}"
-  user_data            = "${var.user-data}"
+  name_prefix          = "${var.lc_name_prefix}"
+  image_id             = "${var.ami_id}"
+  instance_type        = "${var.instance_type}"
+  security_groups      = ["${var.security_groups}"]
+  iam_instance_profile = "${var.iam_instance_profile}"
+  key_name             = "${var.key_name}"
+  user_data            = "${var.user_data}"
 
-  associate_public_ip_address = "${var.associate-public-ip-address}"
+  associate_public_ip_address = "${var.associate_public_ip_address}"
 
   lifecycle {
     create_before_destroy = true
@@ -16,14 +16,14 @@ resource "aws_launch_configuration" "lc" {
 
 // @see: https://github.com/hashicorp/terraform/issues/1552
 resource "aws_cloudformation_stack" "asg" {
-  name = "${var.asg-name}"
+  name = "${var.asg_name}"
 
-  timeout_in_minutes = "${var.timeout-in-minutes}"
+  timeout_in_minutes = "${var.timeout_in_minutes}"
 
   parameters {
     LaunchConfigurationName = "${aws_launch_configuration.lc.name}"
-    VPCZoneIdentifier       = "${var.vpc-subnets}"
-    HealthCheckGracePeriod  = "${var.health-check-grace-period}"
+    VPCZoneIdentifier       = "${var.vpc_subnets}"
+    HealthCheckGracePeriod  = "${var.health_check_grace_period}"
   }
 
   template_body = <<EOF
@@ -44,16 +44,16 @@ resource "aws_cloudformation_stack" "asg" {
       "Type": "AWS::AutoScaling::AutoScalingGroup",
       "Properties": {
         "LaunchConfigurationName": {"Ref": "LaunchConfigurationName"},
-        "MaxSize":                 "${var.asg-max-instance-size}",
-        "MinSize":                 "${var.asg-min-instance-size}",
-        "DesiredCapacity":         "${var.asg-desired-instance-count}",
+        "MaxSize":                 "${var.asg_max_instance_size}",
+        "MinSize":                 "${var.asg_min_instance_size}",
+        "DesiredCapacity":         "${var.asg_desired_instance_count}",
         "TerminationPolicies":     ["OldestLaunchConfiguration", "OldestInstance"],
         "VPCZoneIdentifier":       {"Ref": "VPCZoneIdentifier"},
         "HealthCheckGracePeriod":  {"Ref": "HealthCheckGracePeriod"},
         "Tags": [
           {
             "Key": "Name",
-            "Value": "${var.asg-name}",
+            "Value": "${var.asg_name}",
             "PropagateAtLaunch": "true"
           },
           {
@@ -65,9 +65,9 @@ resource "aws_cloudformation_stack" "asg" {
       },
       "UpdatePolicy": {
         "AutoScalingRollingUpdate": {
-          "MinInstancesInService": "${var.min-instances-in-service}",
-          "MaxBatchSize":          "${var.max-update-batch-size}",
-          "PauseTime":             "${var.pause-time}"
+          "MinInstancesInService": "${var.min_instances_in_service}",
+          "MaxBatchSize":          "${var.max_update_batch_size}",
+          "PauseTime":             "${var.pause_time}"
         }
       }
     }
