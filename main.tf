@@ -40,7 +40,7 @@ resource "aws_cloudformation_stack" "asg" {
     }
   },
   "Resources": {
-    "EcsAsg": {
+    "Asg": {
       "Type": "AWS::AutoScaling::AutoScalingGroup",
       "Properties": {
         "LaunchConfigurationName": {"Ref": "LaunchConfigurationName"},
