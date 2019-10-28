@@ -1,13 +1,13 @@
 resource "aws_launch_configuration" "lc" {
-  name_prefix          = "${var.lc_name_prefix}"
-  image_id             = "${var.ami_id}"
-  instance_type        = "${var.instance_type}"
-  security_groups      = ["${var.security_groups}"]
-  iam_instance_profile = "${var.iam_instance_profile}"
-  key_name             = "${var.key_name}"
-  user_data            = "${var.user_data}"
+  name_prefix          = var.lc_name_prefix
+  image_id             = var.ami_id
+  instance_type        = var.instance_type
+  security_groups      = var.security_groups
+  iam_instance_profile = var.iam_instance_profile
+  key_name             = var.key_name
+  user_data            = var.user_data
 
-  associate_public_ip_address = "${var.associate_public_ip_address}"
+  associate_public_ip_address = var.associate_public_ip_address
 
   lifecycle {
     create_before_destroy = true
@@ -16,14 +16,14 @@ resource "aws_launch_configuration" "lc" {
 
 // @see: https://github.com/hashicorp/terraform/issues/1552
 resource "aws_cloudformation_stack" "asg" {
-  name = "${var.asg_name}"
+  name = var.asg_name
 
-  timeout_in_minutes = "${var.timeout_in_minutes}"
+  timeout_in_minutes = var.timeout_in_minutes
 
-  parameters {
-    LaunchConfigurationName = "${aws_launch_configuration.lc.name}"
-    VPCZoneIdentifier       = "${var.vpc_subnets}"
-    HealthCheckGracePeriod  = "${var.health_check_grace_period}"
+  parameters = {
+    LaunchConfigurationName = aws_launch_configuration.lc.name
+    VPCZoneIdentifier       = var.vpc_subnets
+    HealthCheckGracePeriod  = var.health_check_grace_period
   }
 
   template_body = <<EOF
@@ -80,4 +80,6 @@ resource "aws_cloudformation_stack" "asg" {
   }
 }
 EOF
+
 }
+
