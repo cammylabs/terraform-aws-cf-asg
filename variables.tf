@@ -39,7 +39,6 @@ variable "asg_name" {
 }
 
 variable "vpc_subnets" {
-  type = list(string)
 }
 
 variable "health_check_grace_period" {
